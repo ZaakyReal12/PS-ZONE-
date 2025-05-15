@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemesanan - PS Room Rental</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fde2f3; /* Light Pink Background */
+        }
+        .navbar-bg {
+            background-color: #1a1a1a; /* Dark/Black Navbar */
+        }
+        .button-pink {
+            background-color: #f72585; /* Hot Pink Button */
+            color: white;
+        }
+        .button-pink:hover {
+            background-color: #d01f6d; /* Darker Pink on Hover */
+        }
+        .card-bg {
+            background-color: #ffffff; /* White Card Background */
+        }
+        .text-pink-accent {
+            color: #f72585; /* Hot Pink for Accents */
+        }
+        .input-field {
+            border: 1px solid #cbd5e1; /* border-gray-300 */
+            padding: 0.75rem; /* p-3 */
+            border-radius: 0.375rem; /* rounded-md */
+            width: 100%;
+        }
+        .input-field:focus {
+            border-color: #f72585; /* focus:border-pink-500 */
+            box-shadow: 0 0 0 3px rgba(247, 37, 133, 0.3); /* focus:ring-pink-500 with opacity */
+            outline: none;
+        }
+        .booking-hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('assets/images/background.jpeg'); /* Ganti dengan path gambar lokal Anda */
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-body"> <!-- Changed from bg-gray-100 to use custom style -->
+    <!-- Navbar -->
+    <nav class="navbar-bg p-4 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-white text-2xl font-bold">PS RENTAL ZONE</a>
+            <div class="space-x-4">
+                <a href="index.html#home" class="text-white hover:text-pink-300">Beranda</a>
+                <a href="index.html#about" class="text-white hover:text-pink-300">Tentang Kami</a>
+                <a href="index.html#services" class="text-white hover:text-pink-300">Layanan</a>
+                <a href="booking.html" class="text-white hover:text-pink-300 font-semibold border-b-2 border-pink-500">Pesan</a>
+                <a href="jadwal_ruangan.html" class="text-white hover:text-pink-300">Jadwal</a>
+                <a href="vip_room.html" class="text-white hover:text-pink-300">Catalog</a>
+                <a href="index.html#contact" class="text-white hover:text-pink-300">Kontak</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Booking Hero Section -->
+    <section class="booking-hero-bg text-white py-20">
+        <div class="container mx-auto text-center">
+            <h1 class="text-5xl font-bold mb-4">Pesan Ruangan Gaming Impian Anda</h1>
+            <p class="text-xl mb-8">Amankan slot Anda sekarang dan bersiaplah untuk pengalaman tak terlupakan!</p>
+        </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section class="container mx-auto py-16 px-4">
+        <div class="max-w-2xl mx-auto card-bg p-8 md:p-12 rounded-xl shadow-2xl">
+            <h2 class="text-3xl font-bold mb-8 text-center text-black-accent">Formulir Pemesanan</h2>
+            <form id="bookingForm" class="space-y-6">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
+                    <input type="text" id="name" name="name" class="input-field" placeholder="Masukkan nama Anda" required>
+                </div>
+
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Nomor Telepon</label>
+                    <input type="tel" id="phone" name="phone" class="input-field" placeholder="Contoh: 081234567890" required>
+                </div>
+
+                <div>
+                    <label for="room_type" class="block text-sm font-medium text-gray-700 mb-1">Pilih Tipe Ruangan</label>
+                    <select id="room_type" name="room_type" class="input-field" required>
+                        <option value="" disabled selected>-- Pilih Ruangan --</option>
+                        <option value="standard_ps4">Ruangan Standard PS4</option>
+                        <option value="standard_ps5">Ruangan Standard PS5</option>
+                        <option value="vip_silver">VIP Silver Access</option>
+                        <option value="vip_gold">VIP Gold Access</option>
+                        <option value="vip_platinum">VIP Platinum Suite</option>
+                    </select>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="booking_date" class="block text-sm font-medium text-gray-700 mb-1">Tanggal Pemesanan</label>
+                        <input type="date" id="booking_date" name="booking_date" class="input-field" required>
+                    </div>
+                    <div>
+                        <label for="booking_time" class="block text-sm font-medium text-gray-700 mb-1">Jam Mulai</label>
+                        <input type="time" id="booking_time" name="booking_time" class="input-field" required>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="duration" class="block text-sm font-medium text-gray-700 mb-1">Durasi (jam)</label>
+                    <input type="number" id="duration" name="duration" class="input-field" placeholder="Minimal 1 jam" min="1" value="1" required>
+                </div>
+
+                <div>
+                    <label for="notes" class="block text-sm font-medium text-gray-700 mb-1">Catatan Tambahan (Opsional)</label>
+                    <textarea id="notes" name="notes" rows="3" class="input-field" placeholder="Permintaan khusus atau informasi lainnya..."></textarea>
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" class="button-pink w-full px-8 py-4 rounded-full text-xl font-semibold transition-transform transform hover:scale-105">
+                        <i class="fas fa-calendar-check mr-2"></i>Pesan Sekarang
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- Why Book With Us Section -->
+    <section class="bg-gray-50 py-12">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold mb-6 text-black-accent">Kenapa Memesan Dengan Kami?</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <i class="fas fa-gamepad fa-3x mb-4 text-pink-accent"></i>
+                    <h3 class="text-xl font-semibold text-black-accent mb-2">Koleksi Game Terbaru</h3>
+                    <p class="text-gray-700 text-sm">Selalu update dengan game-game terkini dan terpopuler.</p>
+                </div>
+                <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <i class="fas fa-couch fa-3x mb-4 text-pink-accent"></i>
+                    <h3 class="text-xl font-semibold text-black-accent mb-2">Fasilitas Nyaman</h3>
+                    <p class="text-gray-700 text-sm">Ruangan bersih, AC dingin, dan kursi ergonomis.</p>
+                </div>
+                <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <i class="fas fa-tags fa-3x mb-4 text-pink-accent"></i>
+                    <h3 class="text-xl font-semibold text-black-accent mb-2">Harga Kompetitif</h3>
+                    <p class="text-gray-700 text-sm">Pengalaman gaming premium dengan harga terbaik.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-6 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 PS Room Rental. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const bookingForm = document.getElementById('bookingForm');
+            const bookedRoomsListDiv = document.getElementById('bookedRoomsList'); // Tambahkan ini
+
+            // Fungsi untuk menampilkan ruangan yang sudah dipesan
+            function displayBookedRooms() {
+                const bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+                if (bookedRoomsListDiv) {
+                    if (bookings.length === 0) {
+                        bookedRoomsListDiv.innerHTML = '<p class="text-center text-gray-600">Belum ada ruangan yang dipesan.</p>';
+                        return;
+                    }
+
+                    let html = '<ul class="list-none bg-white p-6 rounded-lg shadow-md divide-y divide-gray-200">';
+                    bookings.forEach(booking => {
+                        html += `<li class="py-3">
+                                    <p class="text-lg font-semibold text-pink-accent">${booking.roomTypeLabel}</p>
+                                    <p class="text-sm text-gray-700">Dipesan oleh: <strong>${booking.name}</strong></p>
+                                    <p class="text-sm text-gray-600">Tanggal: ${booking.date}, Jam: ${booking.time}, Durasi: ${booking.duration} jam</p>
+                                 </li>`;
+                    });
+                    html += '</ul>';
+                    bookedRoomsListDiv.innerHTML = html;
+                }
+            }
+
+            // Fungsi untuk menyimpan pemesanan
+            function saveBooking(bookingDetails) {
+                const bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+                bookings.push(bookingDetails);
+                localStorage.setItem('bookings', JSON.stringify(bookings));
+            }
+
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    const name = document.getElementById('name').value;
+                    const phone = document.getElementById('phone').value;
+                    const roomTypeSelect = document.getElementById('room_type'); // Ambil elemen select
+                    const roomTypeValue = roomTypeSelect.value; // Ambil value dari option yang dipilih
+                    const roomTypeLabel = roomTypeSelect.options[roomTypeSelect.selectedIndex].text; // Ambil teks dari option yang dipilih
+                    const bookingDate = document.getElementById('booking_date').value;
+                    const bookingTime = document.getElementById('booking_time').value;
+                    const duration = document.getElementById('duration').value;
+                    const notes = document.getElementById('notes').value;
+
+                    if (!name || !phone || !roomTypeValue || !bookingDate || !bookingTime || !duration) {
+                        alert('Harap isi semua field yang wajib diisi.');
+                        return;
+                    }
+
+                    // Kumpulkan detail pemesanan
+                    const bookingDetails = {
+                        name: name,
+                        phone: phone,
+                        roomType: roomTypeValue,
+                        roomTypeLabel: roomTypeLabel, // Simpan label untuk tampilan
+                        date: bookingDate,
+                        time: bookingTime,
+                        duration: duration,
+                        notes: notes 
+                    };
+
+                    saveBooking(bookingDetails); // Simpan pemesanan
+                    // displayBookedRooms(); // Bisa dipanggil di sini untuk update langsung, tapi halaman akan redirect
+
+                    // Kumpulkan data untuk dikirim sebagai parameter URL ke halaman konfirmasi
+                    const queryParams = new URLSearchParams({
+                        name: name,
+                        roomType: roomTypeLabel, // Kirim label ke halaman konfirmasi
+                        date: bookingDate,
+                        time: bookingTime,
+                        duration: duration,
+                        // phone: phone, // Jika ingin ditampilkan di konfirmasi
+                        // notes: notes   // Jika ingin ditampilkan di konfirmasi
+                    });
+
+                    // Arahkan ke halaman konfirmasi
+                    window.location.href = `konfirmasi.html?${queryParams.toString()}`;
+                });
+            }
+
+            // Function to get URL parameters (existing code)
+            function getUrlParameter(name) {
+                name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                var results = regex.exec(location.search);
+                return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+            };
+
+            // Pre-select room type if passed in URL (existing code)
+            const roomFromUrl = getUrlParameter('room');
+            if (roomFromUrl) {
+                const roomTypeSelect = document.getElementById('room_type');
+                if (roomTypeSelect) {
+                    roomTypeSelect.value = roomFromUrl;
+                }
+            }
+
+            // Tampilkan ruangan yang sudah dipesan saat halaman dimuat
+            displayBookedRooms(); // Tambahkan ini
+        });
+    </script>
+</body>
+</html>

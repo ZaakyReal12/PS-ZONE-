@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konfirmasi Pemesanan - PS Rental Zone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fde2f3; /* Light Pink Background */
+        }
+        .navbar-bg {
+            background-color: #1a1a1a; /* Dark/Black Navbar */
+        }
+        .button-pink {
+            background-color: #f72585; /* Hot Pink Button */
+            color: white;
+        }
+        .button-pink:hover {
+            background-color: #d01f6d; /* Darker Pink on Hover */
+        }
+        .card-bg {
+            background-color: #ffffff; /* White Card Background */
+        }
+        .text-pink-accent {
+            color: #f72585; /* Hot Pink for Accents */
+        }
+        .text-black-accent {
+            color: #1a1a1a; /* Black for Accents */
+        }
+        .confirmation-icon {
+            font-size: 5rem; /* 80px */
+            color: #10b981; /* Tailwind green-500 */
+        }
+    </style>
+</head>
+<body class="bg-body">
+    <!-- Navbar -->
+    <nav class="navbar-bg p-4 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-white text-2xl font-bold">PS RENTAL ZONE</a>
+            <div class="space-x-4">
+                <a href="index.html#home" class="text-white hover:text-pink-300">Beranda</a>
+                <a href="index.html#about" class="text-white hover:text-pink-300">Tentang Kami</a>
+                <a href="index.html#services" class="text-white hover:text-pink-300">Layanan</a>
+                <a href="booking.html" class="text-white hover:text-pink-300">Pesan</a>
+                <a href="jadwal_ruangan.html" class="text-white hover:text-pink-300">Jadwal</a>
+                <a href="vip_room.html" class="text-white hover:text-pink-300">Catalog</a>
+                <a href="index.html#contact" class="text-white hover:text-pink-300">Kontak</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Confirmation Section -->
+    <section class="container mx-auto py-16 px-4 text-center">
+        <div class="max-w-2xl mx-auto card-bg p-8 md:p-12 rounded-xl shadow-2xl">
+            <i class="fas fa-check-circle confirmation-icon mb-6"></i>
+            <h1 class="text-4xl font-bold mb-4 text-black-accent">Pemesanan Berhasil!</h1>
+            <p class="text-lg text-gray-700 mb-8">
+                Terima kasih <strong id="confirmName" class="text-pink-accent"></strong>! Pemesanan Anda telah kami terima.
+            </p>
+
+            <div class="text-left bg-gray-50 p-6 rounded-lg mb-8">
+                <h2 class="text-2xl font-semibold mb-4 text-pink-accent">Detail Pemesanan:</h2>
+                <ul class="space-y-2 text-gray-700">
+                    <li><strong>Tipe Ruangan:</strong> <span id="confirmRoomType"></span></li>
+                    <li><strong>Tanggal:</strong> <span id="confirmDate"></span></li>
+                    <li><strong>Jam Mulai:</strong> <span id="confirmTime"></span></li>
+                    <li><strong>Durasi:</strong> <span id="confirmDuration"></span> jam</li>
+                    <!-- Anda bisa menambahkan total harga jika dihitung di halaman booking -->
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <p class="text-gray-600">Sebuah email konfirmasi (simulasi) akan dikirimkan ke alamat email Anda.</p>
+                <p class="text-gray-600">Harap lakukan pembayaran di tempat saat kedatangan. Mohon datang 10 menit sebelum jadwal yang dipesan.</p>
+            </div>
+
+            <a href="index.html" class="button-pink px-8 py-3 rounded-full text-lg font-semibold">
+                <i class="fas fa-home mr-2"></i>Kembali ke Beranda
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-6 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 PS Room Rental. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+
+            document.getElementById('confirmName').textContent = params.get('name') || 'Tamu';
+            document.getElementById('confirmRoomType').textContent = params.get('roomType') || 'Tidak diketahui';
+            document.getElementById('confirmDate').textContent = params.get('date') || 'Tidak diketahui';
+            document.getElementById('confirmTime').textContent = params.get('time') || 'Tidak diketahui';
+            document.getElementById('confirmDuration').textContent = params.get('duration') || 'Tidak diketahui';
+        });
+    </script>
+</body>
+</html>
